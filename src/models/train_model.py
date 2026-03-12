@@ -42,9 +42,14 @@ def train_baseline_model(
     """
     model_dir.mkdir(parents=True, exist_ok=True)
 
-    X_train, X_val, y_train, y_val = train_test_split(
-        X_text.values, y.values, test_size=0.2, random_state=42, stratify=y
-    )
+    try:
+        X_train, X_val, y_train, y_val = train_test_split(
+            X_text.values, y.values, test_size=0.2, random_state=42, stratify=y
+        )
+    except ValueError:
+        X_train, X_val, y_train, y_val = train_test_split(
+            X_text.values, y.values, test_size=0.2, random_state=42
+        )
 
     vectorizer = TfidfVectorizer(max_features=20000)
     X_train_vec = vectorizer.fit_transform(X_train)

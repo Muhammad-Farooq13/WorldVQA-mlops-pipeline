@@ -28,6 +28,7 @@ data/processed/*
 !data/processed/.gitkeep
 models/*
 !models/.gitkeep
+!models/demo_bundle.pkl
 
 .env
 .vscode/
